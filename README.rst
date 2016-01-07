@@ -26,7 +26,6 @@ Example of use:
         ]
 
     >>> evalr(tasklist, translations.get)
-
     ['Commander un nouvel oreiller.', 'Faire une sieste!', 'Fixer le mur pendant 30 minutes.']
 
 `evalr` walks python dictionnaries, lists, tuples or sets and apply
@@ -39,11 +38,9 @@ To apply a function to the strings inside a single expression, you can use the `
     >>> s = _("Take a nap") + '!'
 
     >>> s.eval(str.upper)
-
     'TAKE A NAP!'
 
     >>> s.eval(translations.get)
-
     'Faire une sieste!'
 
 Or, again, the `evalr` function
@@ -51,7 +48,6 @@ Or, again, the `evalr` function
 .. code:: python
 
     >>> evalr(_("a new pillow").capitalize(), translations.get)
-
     'Un nouvel oreiller'
 
 
