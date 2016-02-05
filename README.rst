@@ -28,7 +28,7 @@ Example of use:
     >>> evalr(tasklist, translations.get)
     ['Commander un nouvel oreiller.', 'Faire une sieste!', 'Fixer le mur pendant 30 minutes.']
 
-`evalr` walks python dictionnaries, lists, tuples or sets and apply
+`evalr` walks python dictionaries, lists, tuples or sets and apply
 a function to all the strings wrapped inside a `LazyString` object.
 
 To apply a function to the strings inside a single expression, you can use the `eval` method:
