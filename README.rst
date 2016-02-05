@@ -1,4 +1,4 @@
-An implementation of lazy strings. Can be used with *gettext* for the translation of web apps.
+An implementation of lazy strings. Can be used in combination with *gettext* for the translation of web apps.
 
 It's less beautiful than *speaklater* (an other implementation
 of lazy strings), but I wanted lazy strings that work even if a

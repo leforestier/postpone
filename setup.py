@@ -14,7 +14,7 @@ setup(
         "lazy", "string", "i18n", "internationalization", "translation", "translate", "gettext", "ugettext", 
         "delayed", "evaluation", "message", "strings", "web"],
     description = """\
-An implementation of lazy strings. Can be used with gettext for the translation of web apps.""",
+A lazy string implementation that doesn't rely on a global or thread local state.""",
     long_description = long_description,
     classifiers = [
         'Environment :: Web Environment',
