@@ -46,42 +46,52 @@ __all__ = ['LazyString', 'evalr']
 class StringLike(object):
         
     def format(self, *args, **kwargs):
-        return Expression(str.format, self, *args, **kwargs)
+        return Expression(self.string_type().format, self, *args, **kwargs)
         
     def __mod__(self, expr):
-        return Expression(str.__mod__, self, expr)
+        return Expression(self.string_type().__mod__, self, expr)
         
     def __add__(self, expr):
-        return Expression(str.__add__, self, expr)
+        return Expression(self.string_type().__add__, self, expr)
         
     def replace(self, *args, **kwargs):
-        return Expression(str.replace, self, *args, **kwargs)
+        return Expression(self.string_type().replace, self, *args, **kwargs)
         
     def capitalize(self):
-        return Expression(str.capitalize, self)
+        return Expression(self.string_type().capitalize, self)
         
     def lower(self):
-        return Expression(str.lower, self)
+        return Expression(self.string_type().lower, self)
         
     def upper(self):
-        return Expression(str.upper, self)
+        return Expression(self.string_type().upper, self)
         
     def encode(self, *args, **kwargs):
-        return Expression(str.encode, self, *args, **kwargs)
+        return Expression(self.string_type().encode, self, *args, **kwargs)
 
     def __lt__(self, expr):
-        return Expression(str.__lt__, self, expr)
+        return Expression(self.string_type().__lt__, self, expr)
 
     def __le__(self, expr):
-        return Expression(str.__le__, self, expr)
+        return Expression(self.string_type().__le__, self, expr)
 
     def eval(self, func):
         raise NotImplementedError
+        
+    def string_type(self):
+        # We need to identify what kind of string we're working with.
+        # It could be Python 2 `str`, Python 2 `unicode`, or Python 3 `str`.
+        # The string_type method should return one of these.
+        raise NotImplementedError
 
 class Expression(StringLike):
-    def __init__(self, func, *args, **kwargs):
+    def __init__(self, func, arg, *args, **kwargs):
         self.func = func
-        self.args = args
+        if isinstance(arg, StringLike):
+            self.__string_type = arg.string_type()
+        else:
+            self.__string_type = type(arg)
+        self.args = (arg,) + args
         self.kwargs = kwargs
 
     def eval(self, func):
@@ -99,6 +109,9 @@ class Expression(StringLike):
                 )
             )
         )
+        
+    def string_type(self):
+        return self.__string_type
 
 class LazyString(StringLike):
     def __init__(self, string):
@@ -106,6 +119,9 @@ class LazyString(StringLike):
 
     def eval(self, func):
         return func(self.__value)
+        
+    def string_type(self):
+        return type(self.__value)
 
 def evalr(obj, func):
     if isinstance(obj, StringLike):
