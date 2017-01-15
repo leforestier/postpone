@@ -5,7 +5,7 @@ with open('README.rst') as fd:
 
 setup(
     name='postpone',
-    version='0.1.1',
+    version='0.2.0',
     py_modules=['postpone'],
     author = 'Benjamin Le Forestier',
     author_email = 'benjamin@leforestier.org',
