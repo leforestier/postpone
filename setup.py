@@ -5,7 +5,7 @@ with open('README.rst') as fd:
 
 setup(
     name='postpone',
-    version='0.2.0',
+    version='0.3.0',
     py_modules=['postpone'],
     author = 'Benjamin Le Forestier',
     author_email = 'benjamin@leforestier.org',
@@ -30,6 +30,7 @@ A lazy string implementation that doesn't rely on a global or thread local state
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Software Development :: Internationalization',
