@@ -74,6 +74,12 @@ class StringLike(object):
 
     def __le__(self, expr):
         return Expression(self.string_type().__le__, self, expr)
+        
+    def join(self, iterable):
+        return Expression(
+            self.string_type().join, self,
+            Expression(_tuple_constructor, *iterable)
+        ) 
 
     def eval(self, func):
         raise NotImplementedError
@@ -139,6 +145,9 @@ def evalr(obj, func):
         return set(evalr(list(obj), func))
     else:
         return obj
+        
+def _tuple_constructor(*args):
+    return tuple(x for x in args)
 
 if __name__ == '__main__':
     import doctest
